@@ -1,22 +1,28 @@
-// main.dart
 import 'package:flutter/material.dart';
+import 'package:flutterproject/1507flutter/columnexperiment.dart';
 import 'package:flutterproject/1507flutter/containerexperiment.dart';
+import 'package:flutterproject/2207flutter/stopwatch.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-      // body: ColumnExperiment(),
-       body: CustomContainer(),
-      ),
-    );
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false, home: StopwatchExperiemnt()
+        // home: CalculatorPart()
+        // home: ColumnExperiment(),
+        // home: CustomContainer(),
+        // home: Scaffold(
+        //   body: CustomContainer(),
+        //   // body: Center(
+        //   //   child: Text('3456789'),
+        //   // ),
+        // ),
+        );
   }
 }

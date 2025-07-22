@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'ab.dart';
-
-
 
 class ColumnExperiment extends StatelessWidget {
   const ColumnExperiment({super.key});
@@ -9,7 +6,6 @@ class ColumnExperiment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       color: Colors.white,
       child: const Padding(
         padding: EdgeInsets.all(20.0),
@@ -18,30 +14,48 @@ class ColumnExperiment extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Hello, Flutter!',
+              'Hello, World!',
               style: TextStyle(fontSize: 24, color: Colors.black),
             ),
-
             SizedBox(height: 20),
-
             Text(
-              'This is a Column Experiment',
-              style: TextStyle(
-                fontSize: 18,
-                color: Color.fromARGB(255, 11, 38, 127),
-              ),
+              'Welcome to Flutter Column Experiment',
+              style: TextStyle(fontSize: 18, color: Colors.blue),
             ),
             SizedBox(height: 20),
-            ab(),
-            SizedBox(height: 20),
-            ab(),
-            SizedBox(height: 20),
-            ab(),
-            SizedBox(height: 20),
-            ab(),
-            SizedBox(height: 20),
-            ab(),
-            SizedBox(height: 20),        
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: null,
+                    child: Text("B1"),
+                  ),
+                ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: null,
+                    child: Text("B1"),
+                  ),
+                ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: null,
+                    child: Text("B1"),
+                  ),
+                ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: null,
+                    child: Text("B1"),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
