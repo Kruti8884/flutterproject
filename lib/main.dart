@@ -2,9 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterproject/1507flutter/containerexperiment.dart';
 
-//import '1570/columnexperiment.dart';
-//import '1570/containerexperiment.dart ';
-
 void main() {
   runApp(const MyApp());
 }
