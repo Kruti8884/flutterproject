@@ -9,8 +9,10 @@ class StopwatchExperiemnt extends StatefulWidget {
 }
 
 class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
-  int seconds = 0;
+  double seconds = 0;
   late Timer timer;
+  bool isTicking = false;
+  int millis = 0;
   String _secondtoText() => seconds <= 1 ? 'Second' : 'Seconds';
   @override
   Widget build(BuildContext context) {
@@ -31,26 +33,26 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
             const SizedBox(
               height: 10,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: null,
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.green),
-                    foregroundColor: WidgetStatePropertyAll(Colors.white),
+                  onPressed: isTicking ? null : _starttimer,
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.green),
+                    foregroundColor: MaterialStatePropertyAll(Colors.white),
                   ),
-                  child: Text("Start"),
+                  child: const Text("Start"),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton(
-                  onPressed: null,
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.red),
-                    foregroundColor: WidgetStatePropertyAll(Colors.white),
+                  onPressed: isTicking ? _stoptimer : null,
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.red),
+                    foregroundColor: MaterialStatePropertyAll(Colors.white),
                   ),
-                  child: Text("Stop"),
+                  child: const Text("Stop"),
                 ),
               ],
             ),
@@ -61,13 +63,28 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 1), _onTick);
+  }
+
+  void _starttimer() {
+    timer = Timer.periodic(const Duration(milliseconds: 100), _onTick);
+    setState(() {
+      isTicking = true;
+      millis = 0;
+    });
+  }
+
+  void _stoptimer() {
+    timer.cancel();
+    setState(() {
+      isTicking = false;
+    });
   }
 
   void _onTick(Timer timer) {
     if (mounted) {
       setState(() {
-        seconds++;
+        millis += 100;
+        seconds = millis / 1000;
       });
     }
   }
