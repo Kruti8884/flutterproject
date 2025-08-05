@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterproject/2207flutter/stopwatch.dart';
 
@@ -10,8 +9,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String name = "";
-  String email = "";
+  String xyz = "";
+  String abc = "";
   bool isloggedin = false;
 
   TextEditingController t1 = TextEditingController();
@@ -66,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             ElevatedButton(
               onPressed: _validateInput,
-              child: Text("Login "),
+              child: const Text("Login "),
             ),
           ],
         ),
@@ -77,14 +76,12 @@ class _LoginScreenState extends State<LoginScreen> {
   void _validateInput() {
     final form = _formKey.currentState;
     if (form?.validate() == true) {
-      name = t1.text;
-      email = t2.text;
+      xyz = t1.text;
+      abc = t2.text;
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (_) => StopwatchExperiemnt(name: name, email: email)));
+          builder: (_) => StopwatchExperiemnt(name: xyz, email: abc)));
     } else {
-      if (kDebugMode) {
-        print('Some values are missing in the form');
-      }
+      print('Some values are missing in the form');
     }
   }
 
