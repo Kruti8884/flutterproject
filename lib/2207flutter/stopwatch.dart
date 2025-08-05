@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class StopwatchExperiemnt extends StatefulWidget {
-  const StopwatchExperiemnt({super.key});
+  var name, email;
+  StopwatchExperiemnt({super.key, required this.name, required this.email});
 
   @override
   State<StopwatchExperiemnt> createState() => _StopwatchExperiemntState();
@@ -19,7 +22,7 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Stopwatch Experiment'),
+          title: Text(widget.name),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +37,7 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
               ),
             ),
             Expanded(child: controlPanel()),
-            Expanded(child: _buildDisplay()),
+            Expanded(child: _builderDisplay()),
           ],
         ));
   }
@@ -47,7 +50,9 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
         ElevatedButton(
           onPressed: isTicking ? null : _starttimer,
           style: const ButtonStyle(
+            // ignore: deprecated_member_use
             backgroundColor: MaterialStatePropertyAll(Colors.green),
+            // ignore: deprecated_member_use
             foregroundColor: MaterialStatePropertyAll(Colors.white),
           ),
           child: const Text("Start"),
@@ -56,7 +61,9 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
         ElevatedButton(
           onPressed: isTicking ? _stoptimer : null,
           style: const ButtonStyle(
+            // ignore: deprecated_member_use
             backgroundColor: MaterialStatePropertyAll(Colors.red),
+            // ignore: deprecated_member_use
             foregroundColor: MaterialStatePropertyAll(Colors.white),
           ),
           child: const Text("Stop"),
@@ -65,7 +72,9 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
         ElevatedButton(
           onPressed: _lapClick,
           style: const ButtonStyle(
+            // ignore: deprecated_member_use
             backgroundColor: MaterialStatePropertyAll(Colors.amber),
+            // ignore: deprecated_member_use
             foregroundColor: MaterialStatePropertyAll(Colors.white),
           ),
           child: const Text("Lap"),
@@ -84,6 +93,7 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
     setState(() {
       isTicking = true;
       millis = 0;
+      laps.clear();
     });
   }
 
@@ -95,7 +105,9 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
         millis = 0;
       });
     }
-    print(laps);
+    if (kDebugMode) {
+      print(laps);
+    }
   }
 
   void _stoptimer() {
@@ -114,14 +126,16 @@ class _StopwatchExperiemntState extends State<StopwatchExperiemnt> {
     }
   }
 
-  Widget _buildDisplay() {
-    return ListView(
-      children: [
-        for (int i in laps)
-          ListTile(
-            title: Text('Lap ${laps.indexOf(i) + 1}: ${i / 1000} seconds'),
-          ),
-      ],
+
+  Widget _builderDisplay() {
+    return ListView.builder(
+      itemCount: laps.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          leading: const Icon(Icons.timer),
+          title: Text('Lap ${index + 1}: ${laps[index] / 1000} seconds'),
+        );
+      },
     );
   }
 

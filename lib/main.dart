@@ -1,5 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutterproject/2207flutter/stopwatch.dart';
+import 'package:flutterproject/2207flutter/loginpage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,7 +12,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: StopwatchExperiemnt()
+        debugShowCheckedModeBanner: false, home: LoginScreen()
+        // home: StopwatchExperiemnt()
         // home: CalculatorPart()
         // home: ColumnExperiment(),
         // home: CustomContainer(),
