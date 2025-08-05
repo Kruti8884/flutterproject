@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class StopwatchExperiemnt extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
   var name, email;
   StopwatchExperiemnt({super.key, required this.name, required this.email});
 

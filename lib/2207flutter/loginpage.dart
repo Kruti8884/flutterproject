@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterproject/2207flutter/stopwatch.dart';
 
@@ -81,7 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (_) => StopwatchExperiemnt(name: name, email: email)));
     } else {
-      print('Some values are missing in the form');
+      if (kDebugMode) {
+        print('Some values are missing in the form');
+      }
     }
   }
 
